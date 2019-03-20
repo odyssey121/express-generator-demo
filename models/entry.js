@@ -4,7 +4,7 @@ const db = redis.createClient();
 class Entry {
     constructor(obj) {
         for (let key in obj) {
-            this.key = obj[key];
+            this[key] = obj[key];
         }
     }
     save(cb) {

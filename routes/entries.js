@@ -15,8 +15,9 @@ exports.list = (req, res, next) => {
 exports.form = (req, res, next) => {
     res.render('form',{title:'Post'});
 }
-exports.submit = (req, res) => {
+exports.submit = (req, res, next) => {
     const data = req.body.entry;
+    console.log(req.body);
     const entry = new Entry({
         title:data.title,
         body:data.body
