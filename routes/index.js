@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const entries = require('./entries');
+const register = require('./register');
+const login = require('./login');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -15,26 +17,39 @@ router.post('/post', titleRequired,
   entries.submit);
 //list entries
 router.get('/entries', entries.list);
+//Register
+router.get('/register', register.form);
+router.post('/register', titleRequired,
+                         titleLengthRequired,
+                         register.submit);
+
+//login
+router.get('/login', login.form);
+router.post('/login', login.submit);
+router.get('/logout', login.logout);
+
+
+
+
 
 //Myvalidators
 function titleRequired(req, res, next) {
-  const title = req.body.entry.title;
-  if (!title) {
-    res.status(err.status || 500);
-    res.render('fdfs',{error:'fsdfsd'});
+  const username = req.body.user.name;
+  if (!username) {
+    res.error('title is required.');
+    res.redirect('back');
   } else {
     next();
   }
 };
 
 function titleLengthRequired(req, res, next) {
-  console.log(req.body);
-  const title = req.body.entry.title;
-  if (title.length > 4) {
+  const username = req.body.user.name;
+  if (username.length > 4) {
     next();
   } else {
-    res.status(err.status || 500);
-    res.render('tittle minimum length 4',{error:'fsdf'});
+    res.error('length > 4 must have');
+    res.redirect('back');
   }
 };
 
