@@ -7,9 +7,12 @@
     <title><%=title%></title>
 </head>
 <body>
+    page <%= page.currentPage %> total <%= page.total %> allPages <%= page.allPage %> 
     <%entries.forEach( entry => { %>
         <h1><%=entry.title %></h1>
         <p><%=entry.body %></p>
+        <p><%=entry.author %></p>
     <% }) %>
+    
 </body>
 </html>

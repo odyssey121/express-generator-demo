@@ -10,6 +10,7 @@
     <h1><%= title %></h1>
     
     <p>Please enter your Username and Password below</p>
+    <% include messages %>
     <form action="/register" method="POST">
         <p>
             <input type="text" name="user[name]" placeholder="username" />

@@ -2,6 +2,7 @@
     <% messages.forEach( message => { %>
         <p class="<%= message.type %>"> <%= message.string %></p>
     <% }) %>
+    <% locals.removeMessages() %>
 <% } %>
 
 

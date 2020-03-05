@@ -1,58 +1,49 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const entries = require('./entries');
-const register = require('./register');
-const login = require('./login');
+const entries = require("./entries");
+const register = require("./register");
+const login = require("./login");
+const pagination = require("../middleware/pagination");
+const Entry = require("../models/Entry");
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get("/", function(req, res, next) {
+  res.render("index", { title: "Express" });
 });
-
 // get form
-router.get('/post', entries.form);
+router.get("/post", entries.form);
 //post form
-router.post('/post', titleRequired,
-  titleLengthRequired,
-  entries.submit);
+router.post("/post", entries.submit);
 //list entries
-router.get('/entries', entries.list);
+router.get("/entries", pagination(Entry.count), entries.list);
 //Register
-router.get('/register', register.form);
-router.post('/register', titleRequired,
-                         titleLengthRequired,
-                         register.submit);
+router.get("/register", register.form);
+router.post("/register", titleRequired, titleLengthRequired, register.submit);
 
 //login
-router.get('/login', login.form);
-router.post('/login', login.submit);
-router.get('/logout', login.logout);
-
-
-
-
+router.get("/login", login.form);
+router.post("/login", login.submit);
+router.get("/logout", login.logout);
 
 //Myvalidators
 function titleRequired(req, res, next) {
   const username = req.body.user.name;
   if (!username) {
-    res.error('title is required.');
-    res.redirect('back');
+    res.error("username is required.");
+    res.redirect("back");
   } else {
     next();
   }
-};
+}
 
 function titleLengthRequired(req, res, next) {
   const username = req.body.user.name;
   if (username.length > 4) {
     next();
   } else {
-    res.error('length > 4 must have');
-    res.redirect('back');
+    res.error("length > 4 must have");
+    res.redirect("back");
   }
-};
-
-
+}
 
 module.exports = router;

@@ -20,7 +20,6 @@ exports.submit = (req, res, next) => {
             });
             user.save( err => {
                 if (err) return next(err);
-                console.log(req.session.uid);
                 req.session.uid = user.id;
                 res.redirect('/');
             });
