@@ -1,0 +1,67 @@
+<% if(locals.user){ %>
+<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class='navbar-header'>
+          <a id='Express' href="/">Express</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item <%= locals.currentPath == '/entries' && 'active' %>">
+              <a class="nav-link" href="/entries">Posts</a>
+            </li>
+            <li class="nav-item <%= locals.currentPath == '/post' && 'active' %>">
+              <a class="nav-link" href="/post">New</a>
+            </li>
+          </ul>
+          <ul class='nav navbar-nav navbar-right'>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                aria-expanded="false">Hello <%= user.name %></a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="/post">Create post</a>
+                <a class="dropdown-item" href="/entries">Your post</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</nav>
+<% } else { %>
+<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class='navbar-header'>
+          <a id='Express' href="/">Express</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item <%= locals.currentPath == '/entries' && 'active' %>">
+              <a class="nav-link " href="/entries">Posts</a>
+            </li>
+            <li class="nav-item <%= locals.currentPath == '/login' && 'active' %>">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<% } %>

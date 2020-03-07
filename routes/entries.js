@@ -2,7 +2,7 @@ const Entry = require("../models/entry");
 
 exports.list = (req, res, next) => {
   const { pagination } = req;
-  res.locals.page = pagination;
+  res.locals.pagination = pagination;
   Entry.getRange(pagination.pageFrom, pagination.pageTo, (err, items) => {
     if (err) return next(err);
     res.render("entries", {
@@ -13,7 +13,7 @@ exports.list = (req, res, next) => {
 };
 
 exports.form = (req, res, next) => {
-  res.render("form", { title: "Post" });
+  res.render("form", { title: "Create post" });
 };
 exports.submit = (req, res, next) => {
   const data = req.body.entry;
@@ -25,6 +25,6 @@ exports.submit = (req, res, next) => {
   });
   entry.save(err => {
     if (err) return next(err);
-    res.redirect("/");
+    res.redirect("/entries");
   });
 };

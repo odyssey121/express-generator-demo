@@ -8,6 +8,7 @@ var methodOverride = require("method-override");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
+
 var app = express();
 //myInports
 const messages = require("./middleware/messages");
@@ -16,6 +17,7 @@ const api = require("./routes/api");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
+app.engine('ejs', require('express-ejs-extend')); //ejs extends layout
 app.set("view engine", "ejs");
 app.set("json spaces", 2);
 app.use(logger("dev"));
@@ -43,10 +45,12 @@ app.get("/api/user/:id", api.user);
 app.post("/api/post", api.post);
 
 const Pagination = require("./middleware/pagination"); // pagination for post list
+const currentRoute = require("./middleware/currentRoute"); //add current path in res locals
 const Entry = require("./models/entry"); // model entry
 
 app.get("/api/entries/:query?", Pagination(Entry.count), api.postLists);
-
+//add active route in res locals
+app.use(currentRoute)
 // include messages
 app.use(messages);
 // include loadUser middleware
@@ -57,13 +61,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
+
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};

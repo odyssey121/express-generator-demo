@@ -7,6 +7,7 @@ exports.form = (req, res, next) => {
 
 exports.submit = (req, res, next) => {
     const data = req.body.user;
+    console.log(data+"sdfsdfsdf")
     User.authenticate(data.name, data.pass, (err, user) => {
         if(err) return next(err);
         if(!user){

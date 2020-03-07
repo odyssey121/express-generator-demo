@@ -1,9 +1,28 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: azure;
 }
 
-a {
-  color: #00B7FF;
+@font-face {
+  font-family: 'glyphicons-halflings';
+  src: url('./bootstrap/fonts/glyphicons-halflings-regular.woff2');
+}
+
+.form-title {
+  margin-top: 1.4rem;
+}
+.min-width-custom {
+  min-width: 214px;
+}
+
+#Express {
+  text-decoration: none;
+  color: rgba(0, 0, 0, .9);
+  font-family: 'glyphicons-halflings';
+  font-size: 1.4rem;
+  margin: 0rem 1.4rem 0 0;
+}
+
+.navbar-header {
+  padding: 0;
 }

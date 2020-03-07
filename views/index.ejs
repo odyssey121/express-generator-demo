@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="/stylesheets/bootstrap/css/bootstrap.min.css">
-  </head>
-  <body>
-    <% include menu %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <%= JSON.stringify(locals) %>
-    <!-- jsquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- bootstrap -->
-    <script  src='/stylesheets/bootstrap/js/bootstrap.min.js'></script>
-  </body>
-</html>
-
+<% extend('layout/base') %>
+<div class="jumbotron">
+    <h1 class="display-4">Hello, Guys!</h1>
+    <p class="lead">This is my own block on Node.js.</p>
+    <hr class="my-4">
+    <p>Developed by Alexey Shirnin.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="https://github.com/odyssey121/express-generator-demo"
+            role="button">Learn more</a>
+    </p>
+</div>

@@ -1,0 +1,10 @@
+<% if (locals.messages) { %>
+<div class="row justify-content-center">
+    <% messages.forEach( message => { %>
+    <div class="alert alert-<%= message.type %> col-6 min-width-custom text-center" role="alert">
+        <%= message.string %>
+    </div>
+    <% }) %>
+</div>
+<% } %>
+<% locals.removeMessages() %>

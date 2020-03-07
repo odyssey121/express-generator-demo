@@ -10,7 +10,7 @@ function message(req) {
 module.exports = (req, res, next) => {
   res.message = message(req);
   res.error = msg => {
-    return res.message(msg, "error");
+    return res.message(msg, "warning");
   };
   res.locals.messages = req.session.messages || [];
   res.locals.removeMessages = () => {

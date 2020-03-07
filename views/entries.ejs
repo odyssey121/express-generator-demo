@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%=title%></title>
-</head>
-<body>
-    page <%= page.currentPage %> total <%= page.total %> allPages <%= page.allPage %> 
-    <%entries.forEach( entry => { %>
-        <h1><%=entry.title %></h1>
-        <p><%=entry.body %></p>
-        <p><%=entry.author %></p>
-    <% }) %>
-    
-</body>
-</html>
+<% extend('layout/base') %>
+
+<h1 class='text-center form-title'><%= title%></h1>
+
+<% include blocks/pagination %>
+
+<% if (entries.length) {
+    entries.forEach( entry => { %>
+<div class="card" style='margin:2rem 0;'>
+    <div class="card-header" style='font-family: glyphicons-halflings;'>
+        <h5 class="card-title"><%=entry.title %></h5>
+    </div>
+    <div class="card-body">
+        <p class="card-text"><%=entry.body %></p>
+    </div>
+    <div class="card-footer text-muted">
+        <p class="card-text"><small class="text-muted">posted: <%=entry.author %></small></p>
+    </div>
+</div>
+
+<% })} else { %>
+<h1>there are no posts yet</h1>
+<% } %>

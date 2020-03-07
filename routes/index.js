@@ -7,7 +7,7 @@ const pagination = require("../middleware/pagination");
 const Entry = require("../models/Entry");
 
 /* GET home page. */
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 // get form
@@ -15,7 +15,7 @@ router.get("/post", entries.form);
 //post form
 router.post("/post", entries.submit);
 //list entries
-router.get("/entries", pagination(Entry.count), entries.list);
+router.get("/entries", pagination(Entry.count, 3), entries.list);
 //Register
 router.get("/register", register.form);
 router.post("/register", titleRequired, titleLengthRequired, register.submit);

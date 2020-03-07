@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> <%= title %> </title>
-</head>
-<body>
-    <h1><%= title %></h1>
-    
-    <p>Please enter your Username and Password below</p>
-    <% include messages %>
-    <form action="/register" method="POST">
-        <p>
-            <input type="text" name="user[name]" placeholder="username" />
-        </p>
-        <p>
-            <input type="password" name="user[pass]" placeholder="password" />
-        </p>
-        <p>
-            <input type="submit" value="sing up" />
-        </p>
-    </form>
-</body>
-</html>
+<% extend('layout/base') %>
+<h1 class='text-center form-title'><%= title%></h1>
+<% include blocks/messages %>
+<div class="row justify-content-center">
+    <form action="/register" method="POST" class='col-5 min-width-custom'>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" placeholder="Enter username" name="user[name]">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="user[pass]" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label>Fill username and password for register</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+</div>
+</form>
